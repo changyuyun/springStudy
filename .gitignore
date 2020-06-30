@@ -1,3 +1,5 @@
 /.idea
 /ehcache/.idea
 /es/.idea
+/ehcache/target
+/es/target
