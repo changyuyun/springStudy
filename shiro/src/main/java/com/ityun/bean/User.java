@@ -1,13 +1,9 @@
 package com.ityun.bean;
 
-import java.util.Set;
-
 public class User {
     private String id;
-    private String username;
+    private String name;
     private String password;
-
-    private Set<Role> roles;
 
     public String getId() {
         return id;
@@ -17,12 +13,12 @@ public class User {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getName() {
+        return name;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPassword() {
@@ -33,21 +29,12 @@ public class User {
         this.password = password;
     }
 
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
-
     @Override
     public String toString() {
         return "User{" +
                 "id='" + id + '\'' +
-                ", username='" + username + '\'' +
+                ", name='" + name + '\'' +
                 ", password='" + password + '\'' +
-                ", roles=" + roles +
                 '}';
     }
 }
