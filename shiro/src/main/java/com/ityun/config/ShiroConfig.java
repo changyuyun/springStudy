@@ -1,5 +1,6 @@
 package com.ityun.config;
 
+import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
 import com.ityun.shiro.UserRealm;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
@@ -39,7 +40,17 @@ public class ShiroConfig {
         filterMap.put("/hello", "authc");
         filterMap.put("/testThymeleaf", "authc");
         filterMap.put("/login", "anon"); //执行登陆的路由无需认证
+
+        //授权过滤器 顺序一定要在/*之前
+        filterMap.put("/add", "perms[user:add]");
+        filterMap.put("/update", "perms[user:update]");
+        filterMap.put("/del", "perms[user:del]");
+
+        filterMap.put("/*", "authc");
+
         shiroFilterFactoryBean.setLoginUrl("/toLogin");
+
+        shiroFilterFactoryBean.setUnauthorizedUrl("/noAuth");
 
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterMap);
 
@@ -62,5 +73,14 @@ public class ShiroConfig {
     @Bean(name = "userRealm")
     public UserRealm getRealm() {
         return new UserRealm();
+    }
+
+    /**
+     * 配置ShiroDialect,用于thymeleaf和shiro标签配合使用
+     * @return
+     */
+    @Bean
+    public ShiroDialect getShiroDialect() {
+        return new ShiroDialect();
     }
 }

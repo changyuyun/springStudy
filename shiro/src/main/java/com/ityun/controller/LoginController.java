@@ -25,8 +25,6 @@ public class LoginController {
 
         //封装用户信息
         UsernamePasswordToken token = new UsernamePasswordToken(name, password);
-        System.out.println(123);
-        System.out.println(123);
         //执行登陆
         try {
             subject.login(token);

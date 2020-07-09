@@ -28,4 +28,29 @@ public class UserController {
         model.addAttribute("name", "Cyy");
         return "test";
     }
+
+    @RequestMapping(value = "/add", method = RequestMethod.GET)
+    public String add() {
+        return "add";
+    }
+
+    @RequestMapping(value = "/update", method = RequestMethod.GET)
+    public String update() {
+        return "update";
+    }
+
+    @RequestMapping(value = "/del", method = RequestMethod.GET)
+    public String del() {
+        return "del";
+    }
+
+    @RequestMapping(value = "/noAuth", method = RequestMethod.GET)
+    public String noAuth() {
+        return "auth_error";
+    }
+
+    @RequestMapping(value = "/error", method = RequestMethod.GET)
+    public String error() {
+        return "error";
+    }
 }

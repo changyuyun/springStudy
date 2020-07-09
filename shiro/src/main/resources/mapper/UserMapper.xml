@@ -12,4 +12,13 @@
 		FROM
 		users where name = #{value}
 	</select>
+
+	<select id="findById" parameterType="int" resultType="com.ityun.bean.User">
+	SELECT 	id,
+		NAME,
+		PASSWORD,
+		perms
+		FROM
+		users where id = #{value}
+	</select>
 </mapper>
