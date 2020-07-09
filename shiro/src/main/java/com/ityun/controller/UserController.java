@@ -19,7 +19,7 @@ public class UserController {
     public String hello() {
         System.out.println("hello");
         User user = userService.findByName("chang");
-        System.out.println(user.getName());
+        System.out.println(user);
         return "hello";
     }
 

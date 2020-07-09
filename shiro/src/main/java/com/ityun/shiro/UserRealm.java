@@ -1,14 +1,20 @@
 package com.ityun.shiro;
 
+import com.ityun.bean.User;
+import com.ityun.service.UserService;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * 自定义Realm
  */
 public class UserRealm extends AuthorizingRealm {
+    @Autowired
+    private UserService userService;
+
     /**
      * 授权逻辑
      * @param principalCollection
@@ -29,16 +35,15 @@ public class UserRealm extends AuthorizingRealm {
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
         System.out.println("认证逻辑");
-        //临时账号
-        String name = "chang";
-        String password = "123456";
 
         //Shiro判断逻辑
         UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
-        if (!token.getUsername().equals(name)) {
+        User user = userService.findByName(token.getUsername());
+
+        if (user == null) {
             return null;//底层会抛出UnKnowAccountException
         }
 
-        return new SimpleAuthenticationInfo("", password, "");
+        return new SimpleAuthenticationInfo(user, user.getPassword(), "");
     }
 }
