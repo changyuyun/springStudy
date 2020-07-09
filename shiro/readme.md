@@ -4,5 +4,9 @@ springboot
 
 shiro
 
-mybatis(Todo)
+mybatis
+
+shiroDialect
+
+thymeleaf
 
